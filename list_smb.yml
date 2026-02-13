@@ -14,5 +14,6 @@
         validate_certs: false
       register: smb_output
 
-    - debug:
-        var: smb_output
+    - name: Show shares
+      debug:
+        var: smb_output.smb_shares
