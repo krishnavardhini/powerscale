@@ -1,5 +1,5 @@
 - name: List SMB shares via SSH
-  hosts: sd1isilon001.na.am.lilly.com
+  hosts: SD1ISILON01.na.am.lilly.com
   gather_facts: no
   tasks:
     - name: Run isi smb shares list
