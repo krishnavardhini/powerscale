@@ -1,0 +1,18 @@
+---
+- name: List PowerScale SMB Shares
+  hosts: localhost
+  gather_facts: no
+  collections:
+    - dellemc.powerscale
+
+  tasks:
+    - name: Get SMB shares
+      dellemc.powerscale.smb_share_info:
+        onefs_host: "{{ onefs_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        validate_certs: false
+      register: smb_output
+
+    - debug:
+        var: smb_output
