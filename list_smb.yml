@@ -1,19 +1,11 @@
----
-- name: List PowerScale SMB Shares
-  hosts: localhost
+- name: List SMB shares via SSH
+  hosts: sd1isilon001.na.am.lilly.com
   gather_facts: no
-  collections:
-    - dellemc.powerscale
-
   tasks:
-    - name: Get SMB shares
-      dellemc.powerscale.smb_share_info:
-        onefs_host: "{{ onefs_host }}"
-        username: "{{ ansible_user }}"
-        password: "{{ ansible_password }}"
-        validate_certs: false
+    - name: Run isi smb shares list
+      command: isi smb shares list
       register: smb_output
 
     - name: Show shares
       debug:
-        var: smb_output.smb_shares
+        var: smb_output.stdout_lines
